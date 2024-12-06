@@ -228,6 +228,16 @@ public interface IPersistencia {
      * @throws GestorBDEsportsException Si hi ha algun error en eliminar l'usuari.
      */
     void eliminarUsuari(String login) throws GestorBDEsportsException;
+    
+    /**
+    * Valida un usuari pel seu login i contrasenya.
+    * @param login El nom d'usuari.
+    * @param contrasenya La contrasenya de l'usuari.
+    * @return Retorna un booleà que indica si el login i la contrasenya són vàlids.
+    * @throws GestorBDEsportsException Si hi ha un error en la validació.
+    */
+    boolean validarUsuari(String login, String contrasenya) throws GestorBDEsportsException;
+
 
     // Gestió de transaccions i connexions
 
