@@ -1,5 +1,6 @@
 package org.esportsapp.persistencia;
 
+import java.util.Date;
 import java.util.List;
 import p1.t6.model.romeumusetelena.Categoria;
 import p1.t6.model.romeumusetelena.Equip;
@@ -16,9 +17,10 @@ public interface IPersistencia {
     /**
      * Afegeix un nou equip al sistema.
      * @param equip L'equip a afegir.
+     * @return Torna cert o fals.
      * @throws GestorBDEsportsException Si hi ha algun error en afegir l'equip.
      */
-    void afegirEquip(Equip equip) throws GestorBDEsportsException;
+    boolean afegirEquip(Equip equip) throws GestorBDEsportsException;
 
     /**
      * Modifica un equip existent al sistema.
@@ -57,6 +59,38 @@ public interface IPersistencia {
      * @throws GestorBDEsportsException Si hi ha algun error en afegir el jugador.
      */
     void afegirJugador(Jugador jugador) throws GestorBDEsportsException;
+    
+    /**
+    * Busca jugadors pel seu nom.
+    * @param nom El nom o part del nom del jugador.
+    * @return Una llista de jugadors que coincideixen amb el nom.
+    * @throws GestorBDEsportsException Si hi ha un error en la consulta.
+    */
+    List<Jugador> buscarNomJugador(String nom) throws GestorBDEsportsException;
+    
+    /**
+    * Busca una llista de jugadors que tinguin un NIF específic.
+    * @param nif El NIF del jugador que es vol buscar.
+    * @return Una llista de jugadors que coincideixen amb el NIF proporcionat. 
+    * @throws GestorBDEsportsException Si hi ha un error en la consulta.
+    */
+    List<Jugador> buscarPerNIFJugador(String nif) throws GestorBDEsportsException;
+    
+    /**
+    * Busca una llista de jugadors que tinguin una data de naixement específica.
+    * @param dataNaix La data de naixement del jugador que es vol buscar.
+    * @return Una llista de jugadors que coincideixen amb la data de naixement proporcionada.
+    * @throws GestorBDEsportsException Si hi ha un error en la consulta.
+    */
+    List<Jugador> buscarPerDataNaixJugador(Date dataNaix) throws GestorBDEsportsException;
+    
+    /**
+    * Busca una llista de jugadors ordenats per cognom.
+    * @param ordenarPerCognom Si es vol ordenar per cognom o no.
+    * @return Una llista de jugadors ordenats per cognom si el paràmetre és true.
+    * @throws GestorBDEsportsException Si hi ha un error en la consulta.
+    */
+    List<Jugador> buscarJugadorsOrdenatsPerCognom(boolean ordenarPerCognom) throws GestorBDEsportsException;
 
     /**
      * Modifica un jugador existent al sistema.
@@ -170,9 +204,10 @@ public interface IPersistencia {
     /**
      * Afegeix una nova temporada al sistema.
      * @param temporada La temporada a afegir.
+     * @return Retorna cert o fals.
      * @throws GestorBDEsportsException Si hi ha algun error en afegir la temporada.
      */
-    void afegirTemporada(Temporada temporada) throws GestorBDEsportsException;
+    boolean afegirTemporada(Temporada temporada) throws GestorBDEsportsException;
 
     /**
      * Obté una temporada específica per un any.
@@ -192,9 +227,10 @@ public interface IPersistencia {
     /**
      * Elimina una temporada específica del sistema.
      * @param any L'any de la temporada a eliminar.
+     * @return Retorna cert o fals.
      * @throws GestorBDEsportsException Si hi ha algun error en eliminar la temporada.
      */
-    void eliminarTemporada(int any) throws GestorBDEsportsException;
+    boolean eliminarTemporada(int any) throws GestorBDEsportsException;
     
     /**
      * Obté una llista de tots els equips associats a una temporada específica.
