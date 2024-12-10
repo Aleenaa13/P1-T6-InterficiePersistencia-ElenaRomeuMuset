@@ -69,12 +69,12 @@ public interface IPersistencia {
     List<Jugador> buscarNomJugador(String nom) throws GestorBDEsportsException;
     
     /**
-    * Busca una llista de jugadors que tinguin un NIF específic.
+    * Busca un jugador que tingui un NIF específic.
     * @param nif El NIF del jugador que es vol buscar.
-    * @return Una llista de jugadors que coincideixen amb el NIF proporcionat. 
+    * @return El jugador que coincideix amb el NIF proporcionat, o null si no es troba cap coincidència.
     * @throws GestorBDEsportsException Si hi ha un error en la consulta.
     */
-    List<Jugador> buscarPerNIFJugador(String nif) throws GestorBDEsportsException;
+    Jugador buscarPerNIFJugador(String nif) throws GestorBDEsportsException;
     
     /**
     * Busca una llista de jugadors que tinguin una data de naixement específica.
@@ -155,27 +155,6 @@ public interface IPersistencia {
     // Mètodes per gestionar Categories
 
     /**
-     * Afegeix una nova categoria al sistema.
-     * @param categoria La categoria a afegir.
-     * @throws GestorBDEsportsException Si hi ha algun error en afegir la categoria.
-     */
-    void afegirCategoria(Categoria categoria) throws GestorBDEsportsException;
-
-    /**
-     * Modifica una categoria existent.
-     * @param categoria La categoria amb les dades actualitzades.
-     * @throws GestorBDEsportsException Si hi ha algun error en modificar la categoria.
-     */
-    void modificarCategoria(Categoria categoria) throws GestorBDEsportsException;
-
-    /**
-     * Elimina una categoria del sistema.
-     * @param idCategoria L'ID de la categoria a eliminar.
-     * @throws GestorBDEsportsException Si hi ha algun error en eliminar la categoria.
-     */
-    void eliminarCategoria(int idCategoria) throws GestorBDEsportsException;
-
-    /**
      * Obté una categoria específica pel seu ID.
      * @param idCategoria L'ID de la categoria.
      * @return La categoria corresponent a l'ID.
@@ -189,15 +168,6 @@ public interface IPersistencia {
      * @throws GestorBDEsportsException Si hi ha algun error en recuperar les categories.
      */
     List<Categoria> obtenirTotesCategories() throws GestorBDEsportsException;
-    
-     /**
-     * Obté una llista de tots els equips associats a una categoria específica.
-     * @param idCategoria L'ID de la categoria.
-     * @return Una llista amb els equips que pertanyen a la categoria especificada.
-     * @throws GestorBDEsportsException Si hi ha algun error en recuperar els equips de la categoria.
-     */
-    List<Equip> obtenirEquipsDeCategoria(int idCategoria) throws GestorBDEsportsException;
-
     
     // Mètodes per gestionar Temporades
 
@@ -231,40 +201,9 @@ public interface IPersistencia {
      * @throws GestorBDEsportsException Si hi ha algun error en eliminar la temporada.
      */
     boolean eliminarTemporada(int any) throws GestorBDEsportsException;
-    
-    /**
-     * Obté una llista de tots els equips associats a una temporada específica.
-     * @param anyTemporada L'any de la temporada.
-     * @return Una llista amb els equips que participen en la temporada especificada.
-     * @throws GestorBDEsportsException Si hi ha algun error en recuperar els equips de la temporada.
-     */
-    List<Equip> obtenirEquipsDeTemporada(int anyTemporada) throws GestorBDEsportsException;
-
-    
+  
     // Mètodes per gestionar Usuaris
 
-    /**
-     * Afegeix un usuari al sistema.
-     * @param usuari L'usuari a afegir.
-     * @throws GestorBDEsportsException Si hi ha algun error en afegir l'usuari.
-     */
-    void afegirUsuari(Usuari usuari) throws GestorBDEsportsException;
-
-    /**
-     * Obté un usuari específic pel seu login.
-     * @param login El nom d'usuari per identificar-lo.
-     * @return L'usuari corresponent al login.
-     * @throws GestorBDEsportsException Si l'usuari no es troba o hi ha algun error.
-     */
-    Usuari obtenirUsuari(String login) throws GestorBDEsportsException;
-
-    /**
-     * Elimina un usuari pel seu login.
-     * @param login El nom d'usuari a eliminar.
-     * @throws GestorBDEsportsException Si hi ha algun error en eliminar l'usuari.
-     */
-    void eliminarUsuari(String login) throws GestorBDEsportsException;
-    
     /**
     * Valida un usuari pel seu login i contrasenya.
     * @param login El nom d'usuari.
