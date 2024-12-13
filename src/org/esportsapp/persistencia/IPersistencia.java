@@ -138,13 +138,6 @@ public interface IPersistencia {
     void eliminarMembre(Membre membre) throws GestorBDEsportsException;
     
     /**
-     * Modifica un membre existent al sistema.
-     * @param membre El membre amb les dades actualitzades.
-     * @throws GestorBDEsportsException Si hi ha algun error en modificar el membre.
-     */
-    void modificarMembre(Membre membre) throws GestorBDEsportsException;
-
-    /**
      * Obté una llista de tots els membres d'un equip.
      * @param idEquip L'ID de l'equip.
      * @return Una llista de membres associats a l'equip.
