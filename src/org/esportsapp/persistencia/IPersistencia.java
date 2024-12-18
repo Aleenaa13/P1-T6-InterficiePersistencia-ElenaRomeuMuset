@@ -74,7 +74,7 @@ public interface IPersistencia {
     * @return El jugador que coincideix amb el NIF proporcionat, o null si no es troba cap coincidència.
     * @throws GestorBDEsportsException Si hi ha un error en la consulta.
     */
-    Jugador buscarPerNIFJugador(String nif) throws GestorBDEsportsException;
+    List<Jugador> buscarPerNIFJugador(String nif) throws GestorBDEsportsException;
     
     /**
     * Busca una llista de jugadors que tinguin una data de naixement específica.
