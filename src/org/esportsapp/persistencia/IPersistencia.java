@@ -1,5 +1,6 @@
 package org.esportsapp.persistencia;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import p1.t6.model.romeumusetelena.Categoria;
@@ -8,7 +9,6 @@ import p1.t6.model.romeumusetelena.GestorBDEsportsException;
 import p1.t6.model.romeumusetelena.Jugador;
 import p1.t6.model.romeumusetelena.Membre;
 import p1.t6.model.romeumusetelena.Temporada;
-import p1.t6.model.romeumusetelena.Usuari;
 
 public interface IPersistencia {
 
@@ -28,7 +28,16 @@ public interface IPersistencia {
      * @throws GestorBDEsportsException Si hi ha algun error en modificar l'equip.
      */
     void modificarEquip(Equip equip) throws GestorBDEsportsException;
-
+    
+    
+    /**
+     * Verifica si un equipo tiene miembros asociados
+     * @param idEquip ID del equipo a verificar
+     * @return true si el equipo tiene miembros, false si no tiene
+     * @throws SQLException Si hi ha algun error en comprovar els membres d'un equip.
+     */
+    boolean equipTeMembres(int idEquip) throws SQLException;
+    
     /**
      * Elimina un equip del sistema.
      * @param idEquip L'ID de l'equip a eliminar.
@@ -91,14 +100,37 @@ public interface IPersistencia {
     * @throws GestorBDEsportsException Si hi ha un error en la consulta.
     */
     List<Jugador> buscarJugadorsOrdenatsPerCognom(boolean ordenarPerCognom) throws GestorBDEsportsException;
-
+    
+    
+    
     /**
      * Modifica un jugador existent al sistema.
      * @param jugador El jugador amb les dades actualitzades.
      * @throws GestorBDEsportsException Si hi ha algun error en modificar el jugador.
      */
     void modificarJugador(Jugador jugador) throws GestorBDEsportsException;
-
+    
+    
+    /**
+    * Verifica si es posible cambiar la fecha de nacimiento de un jugador
+    * sin afectar a su categoría actual en los equipos donde está inscrito.
+    * 
+    * @param idJugador ID del jugador a verificar
+    * @param novaData Nueva fecha de nacimiento propuesta
+    * @return true si se puede cambiar la fecha, false si el cambio afectaría a alguna categoría
+    * @throws GestorBDEsportsException si hay error en la consulta
+    */
+    boolean esPermesCanviarDataNaixement(int idJugador, Date novaData) throws GestorBDEsportsException;
+  
+    
+    /**
+    * Verifica si es posible cambiar el sexo de un jugador
+    * @param idJugador ID del jugador a verificar
+    * @return true si se puede cambiar el sexo, false si no
+    * @throws GestorBDEsportsException si hay error en la consulta
+    */
+    boolean esPermesCanviarSexe(int idJugador) throws GestorBDEsportsException;
+    
     /**
      * Elimina un jugador del sistema.
      * @param idJugador L'ID del jugador a eliminar.
